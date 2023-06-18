@@ -35,7 +35,7 @@
               "ng2-flatpickr"
             ],
             "aot": true,
-            "outputPath": "dist/vuexy",
+            "outputPath": "dist/assignment-app",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",

@@ -5,6 +5,7 @@ import { takeUntil } from 'rxjs/operators'
 import { Subject } from 'rxjs'
 import { Router } from '@angular/router'
 import { CoreConfigService } from '@core/services/config.service'
+import { AuthenticationService } from 'app/auth/service'
 
 @Component({
   selector: 'app-auth-login-v2',
@@ -34,7 +35,8 @@ export class AuthLoginV2Component implements OnInit {
     private _coreConfigService: CoreConfigService,
     private _formBuilder: FormBuilder,
     private _route: ActivatedRoute,
-    private _router: Router
+    private _router: Router,
+    private _authService: AuthenticationService
   ) {
     this._unsubscribeAll = new Subject()
 
@@ -78,6 +80,7 @@ export class AuthLoginV2Component implements OnInit {
 
     // Login
     this.loading = true
+    this.login()
 
     // redirect to home page
     setTimeout(() => {
@@ -85,6 +88,9 @@ export class AuthLoginV2Component implements OnInit {
     }, 100)
   }
 
+  login() {
+    console.log("login", this.loginForm.value)
+  }
   // Lifecycle Hooks
   // -----------------------------------------------------------------------------------------------------
 
