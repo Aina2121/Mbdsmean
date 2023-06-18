@@ -17,7 +17,7 @@ import { CoreConfig } from '@core/types'
 export const coreConfig: CoreConfig = {
   app: {
     appName     : 'Vuexy',                                        // App Name
-    appTitle    : 'Vuexy - Angular 11+ Bootstrap Admin Template', // App Title
+    appTitle    : 'Mini projet : améliorer le TP sur les Assignments', // App Title
     appLogoImage: 'assets/images/logo/logo.svg',                  // App Logo
   },
   layout: {

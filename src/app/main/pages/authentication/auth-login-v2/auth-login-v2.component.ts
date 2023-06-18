@@ -6,6 +6,7 @@ import { Subject } from 'rxjs'
 import { Router } from '@angular/router'
 import { CoreConfigService } from '@core/services/config.service'
 import { AuthenticationService } from 'app/auth/service'
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-auth-login-v2',
@@ -36,7 +37,8 @@ export class AuthLoginV2Component implements OnInit {
     private _formBuilder: FormBuilder,
     private _route: ActivatedRoute,
     private _router: Router,
-    private _authService: AuthenticationService
+    private _authService: AuthenticationService,
+    private _toastrService: ToastrService
   ) {
     this._unsubscribeAll = new Subject()
 
@@ -81,15 +83,20 @@ export class AuthLoginV2Component implements OnInit {
     // Login
     this.loading = true
     this.login()
-
-    // redirect to home page
-    setTimeout(() => {
-      this._router.navigate(['/'])
-    }, 100)
   }
 
   login() {
-    console.log("login", this.loginForm.value)
+    const success = response => {
+      this._router.navigate(['/home'])
+    }
+
+    const error = response => {
+      this.loading = false
+      this.error = response.error
+      this._toastrService.error(response.error, "Erreur")
+    }
+
+    this._authService.login(this.loginForm.value.email, this.loginForm.value.password).subscribe(success, error);
   }
   // Lifecycle Hooks
   // -----------------------------------------------------------------------------------------------------
