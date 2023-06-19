@@ -2,19 +2,19 @@ import { CoreMenu } from '@core/types'
 
 export const menu: CoreMenu[] = [
   {
-    id: 'home',
-    title: 'Home',
-    translate: 'MENU.HOME',
+    id: 'list',
+    title: 'Liste des Assignments',
+    translate: 'Liste',
     type: 'item',
-    icon: 'home',
-    url: 'home'
+    icon: 'list',
+    url: 'pages/list'
   },
   {
-    id: 'sample',
-    title: 'Sample',
-    translate: 'MENU.SAMPLE',
+    id: 'add',
+    title: 'Nouvel Assignment',
+    translate: 'Ajouter',
     type: 'item',
     icon: 'file',
-    url: 'sample'
+    url: 'pages/add'
   }
 ]

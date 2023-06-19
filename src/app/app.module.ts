@@ -18,10 +18,6 @@ import { coreConfig } from 'app/app-config'
 import { AppComponent } from 'app/app.component'
 import { LayoutModule } from 'app/layout/layout.module'
 import { SampleModule } from 'app/main/sample/sample.module';
-import { AssignmentsComponent } from './assignments/assignments.component';
-import { AddAssignmentComponent } from './assignments/add-assignment/add-assignment.component';
-import { AssignmentDetailComponent } from './assignments/assignment-detail/assignment-detail.component';
-import { EditAssignmentComponent } from './assignments/edit-assignment/edit-assignment.component'
 
 const appRoutes: Routes = [
   {
@@ -40,7 +36,7 @@ const appRoutes: Routes = [
 ]
 
 @NgModule({
-  declarations: [AppComponent, AssignmentsComponent, AddAssignmentComponent, AssignmentDetailComponent, EditAssignmentComponent],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
