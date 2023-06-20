@@ -44,6 +44,10 @@ export class AuthenticationService {
     return this.currentUser && this.currentUserSubject.value.role === Role.Client;
   }
 
+  get isUser() {
+    return this.currentUser && this.currentUserSubject.value.role === Role.User;
+  }
+
   /**
    * User login
    *
