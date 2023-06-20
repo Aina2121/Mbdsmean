@@ -87,7 +87,7 @@ export class AuthLoginV2Component implements OnInit {
 
   login() {
     const success = response => {
-      this._router.navigate(['/home'])
+      this._router.navigate(['/pages/list'])
     }
 
     const error = response => {

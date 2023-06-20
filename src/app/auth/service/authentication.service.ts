@@ -27,6 +27,7 @@ export class AuthenticationService {
 
   // getter: currentUserValue
   public get currentUserValue(): User {
+    console.log("currentUserSubject", this.currentUserSubject.value)
     return this.currentUserSubject.value;
   }
 
@@ -60,9 +61,10 @@ export class AuthenticationService {
       .post<any>(`${environment.apiUrl}auth`, { email, password })
       .pipe(
         map(user => {
-          console.log("user", user)
+          console.log("user", user.user)
           // login successful if there's a jwt token in the response
-          if (user && user.token) {
+          if (user && user.user.token) {
+            localStorage.setItem('token', user.user.token)
             // store user details and jwt token in local storage to keep user logged in between page refreshes
             localStorage.setItem('currentUser', JSON.stringify(user));
 

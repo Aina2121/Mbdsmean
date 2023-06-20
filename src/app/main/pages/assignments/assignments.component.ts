@@ -6,6 +6,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AssignmentSubject } from 'app/models/AssignmentSubject';
 import { AssignmentsService } from 'app/services/assignments.service';
 import { CdkDragDrop } from '@angular/cdk/drag-drop';
+import { Assignment } from 'app/models/Assignment';
 
 @Component({
   selector: 'app-assignments',
@@ -18,6 +19,8 @@ export class AssignmentsComponent {
   assignmentDrag:AssignmentSubject;
   renduFalseAssignments: AssignmentSubject[] = [];
   renduTrueAssignments: AssignmentSubject[] = [];
+  error = ''
+  event : CdkDragDrop<AssignmentSubject[]>
 
     // propriétés pour la pagination
     page: number=1;
@@ -31,16 +34,16 @@ export class AssignmentsComponent {
 
     noteForm: FormGroup;
     modalRef: BsModalRef;
-    noteModal: TemplateRef<any>; // Ajoutez cette ligne
+    @ViewChild('noteModal') noteModal: TemplateRef<any>;
 
 
   constructor(private assignmentsService:AssignmentsService, private modalService: BsModalService, private formBuilder: FormBuilder) {}
 
   onDrop(event: CdkDragDrop<AssignmentSubject[]>) {
     this.assignmentDrag = event.item.data;
-    this.assignmentDrag.rendu = true;
     this.openNoteModal();
-    this.renduFalseAssignments.splice(event.previousIndex, 1);
+    this.event = event
+   // this.renduFalseAssignments.splice(event.previousIndex, 1);
   }
 
   openNoteModal() {
@@ -49,11 +52,13 @@ export class AssignmentsComponent {
    this.renduTrueAssignments.push(this.assignmentDrag);
   }
 
-  submitNote() {
+  async submitNote() {
+    console.log('Miditraa:', this.noteForm.valid, this.noteForm.value);
     if (this.noteForm.valid) {
-      const note = this.noteForm.value.note;
+      console.log('Miditraa22:');
+      await this.addNote();
       // Faites quelque chose avec la note, par exemple, mettez à jour l'assignment
-      console.log('Note:', note);
+      console.log('NoteUpdated:');
       this.modalRef.hide();
       this.noteForm.reset();
     }
@@ -61,6 +66,11 @@ export class AssignmentsComponent {
 
   ngOnInit() {
     this.getAssignments();
+    this.noteForm = this.formBuilder.group({
+      dateRendu: ['', Validators.required],
+      note: ['', Validators.required],
+      remarque: ['', Validators.required]
+    });
   }
 
   getAssignments() {
@@ -101,5 +111,26 @@ export class AssignmentsComponent {
   dernierePage() {
     this.page = this.totalPages;
     this.getAssignments();
+  }
+
+  addNote() {
+    var data : Assignment = {
+      auteur: this.assignmentDrag.auteur,
+      rendu: true,
+      dateRendu: this.noteForm.value.dateRendu,
+      matiere:this.assignmentDrag.matiere,
+      note:this.noteForm.value.note,
+      remarque:this.noteForm.value.remarque
+    }
+
+    const success = response => {
+      this.getAssignments()
+    }
+     
+    const error = response => {
+      this.error = response.error
+    }
+
+    this.assignmentsService.updateAssignment(data).subscribe(success, error)
   }
 }

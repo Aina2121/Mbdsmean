@@ -1,5 +1,11 @@
 <!-- assignments.component.html -->
 
+<ngb-alert [type]="'danger'" [dismissible]="false" *ngIf="error">
+  <div class="alert-body">
+    <p>{{ error }}</p>
+  </div>
+</ngb-alert>
+
 <div class="container">
     <div class="left-container" cdkDropList (cdkDropListDropped)="onDrop($event)">
       <div class="card" *ngFor="let assignment of renduFalseAssignments" cdkDrag [cdkDragData]="assignment">
@@ -11,7 +17,7 @@
         {{ assignment.auteur }}
       </div>
     </div>
-  </div>
+</div>
 
   <ng-template #noteModal>
     <div class="modal-header">
@@ -23,8 +29,20 @@
     <div class="modal-body">
       <form [formGroup]="noteForm" (ngSubmit)="submitNote()">
         <div class="form-group">
-          <label>Note</label>
-          <textarea class="form-control" formControlName="note" rows="4"></textarea>
+          <div class="form-group">
+            <label for="dateRendu">Date de rendu :</label>
+            <input type="date" class="form-control" id="dateRendu" formControlName="dateRendu" required>
+          </div>
+        
+          <div class="form-group">
+            <label for="note">Note :</label>
+            <input type="number" class="form-control" id="note" formControlName="note" required>
+          </div>
+        
+          <div class="form-group">
+            <label for="remarque">Remarque :</label>
+            <input type="text" class="form-control" id="remarque" formControlName="remarque" required>
+          </div>
         </div>
         <button type="submit" class="btn btn-primary">Ajouter</button>
       </form>
