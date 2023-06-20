@@ -31,17 +31,26 @@
         <button class="btn btn-primary start" (click)="next()">Suivant</button>
       </div>
       <div id="information-part" class="content" role="tabpanel" aria-labelledby="information-part-trigger">
-        <input type="text" name="email2" class="form-control" />
+        <label>Veuillez selectionner la matiere</label>
+        <select class="form-control" [(ngModel)]="assignment.matiere">
+          <option *ngFor="let subject of subjects" value="{{subject.code}}">{{subject.nom}}</option>
+        </select>
+        <label>Cochez si c'est rendu</label>
+        <input type="checkbox" [(ngModel)]="assignment.rendu" class="form-control">
         <div class="button-container">
-          <label>Auteur du devoir</label>
-        <input type="text" name="email" class="form-control" />
           <button class="btn btn-primary" (click)="previous()">Precedent</button>
-          <button class="btn btn-primary" (click)="next()">Suivant</button>
+          <button class="btn btn-primary" *ngIf="assignment.rendu" (click)="next()">Suivant</button>
+          <button class="btn btn-primary" *ngIf="!assignment.rendu" (click)="submit()">Terminer</button>
         </div>
         
       </div>
       <div id="information" class="content" role="tabpanel" aria-labelledby="information-trigger">
-        <input type="text" name="email2" class="form-control" />
+            <label for="dateRendu">Date rendu :</label>
+            <input type="date" class="form-control" id="dateRendu" [(ngModel)]="assignment.dateRendu" required>
+            <label for="note">Note :</label>
+            <input type="number" class="form-control" id="note" [(ngModel)]="assignment.note" required>
+            <label for="remarque">Remarque :</label>
+            <input type="text" class="form-control" id="remarque" [(ngModel)]="assignment.remarque">
         <div class="button-container">
           <button class="btn btn-primary" (click)="previous()">Precedent</button>
           <button class="btn btn-primary" (click)="submit()">Terminer</button>

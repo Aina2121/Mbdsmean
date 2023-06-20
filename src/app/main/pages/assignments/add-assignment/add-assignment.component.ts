@@ -14,13 +14,15 @@ export class AddAssignmentComponent implements OnInit {
 
   private horizontalWizardStepper: Stepper;
   assignment: Assignment = new Assignment
-  subjects: Subject
+  subjects: Subject[] = []
   error: ''
 
   constructor(private assignmentService: AssignmentsService, private _router: Router) { }
 
   ngOnInit(): void {
     //this.horizontalWizardStepper = new Stepper(document.querySelector('#stepper1'), {});
+    this.getSubject()
+    this.assignment.rendu = false
   }
 
   ngAfterViewInit() {
@@ -31,6 +33,7 @@ export class AddAssignmentComponent implements OnInit {
   }
 
   next() {
+    console.log("suivant")
     this.horizontalWizardStepper.next();
   }
 
@@ -51,6 +54,11 @@ export class AddAssignmentComponent implements OnInit {
   }
 
   submit() {
+    if(!this.assignment.rendu) {
+      this.assignment.dateRendu = null
+      this.assignment.note = null
+      this.assignment.remarque = null
+    }
     const success = response => {
       this._router.navigate(['/pages/list'])
     }
