@@ -21,6 +21,7 @@ export class AssignmentsComponent {
   renduTrueAssignments: AssignmentSubject[] = [];
   error = ''
   event : CdkDragDrop<AssignmentSubject[]>
+  assignmentDetails: AssignmentSubject
 
     // propriétés pour la pagination
     page: number=1;
@@ -35,6 +36,7 @@ export class AssignmentsComponent {
     noteForm: FormGroup;
     modalRef: BsModalRef;
     @ViewChild('noteModal') noteModal: TemplateRef<any>;
+    @ViewChild('details') details: TemplateRef<any>;
 
 
   constructor(private assignmentsService:AssignmentsService, private modalService: BsModalService, private formBuilder: FormBuilder) {}
@@ -133,5 +135,10 @@ export class AssignmentsComponent {
     }
 
     this.assignmentsService.updateAssignment(data).subscribe(success, error)
+  }
+
+  openDetails(assign: AssignmentSubject) {
+    this.assignmentDetails = assign;
+    this.modalRef = this.modalService.show(this.details);
   }
 }

@@ -4,28 +4,47 @@
       <div class="step" data-target="#logins-part">
         <button type="button" class="step-trigger" role="tab" aria-controls="logins-part" id="logins-part-trigger">
           <span class="bs-stepper-circle">1</span>
-          <span class="bs-stepper-label">Logins</span>
+          <span class="bs-stepper-label">Auteur</span>
         </button>
       </div>
       <div class="line"></div>
       <div class="step" data-target="#information-part">
         <button type="button" class="step-trigger" role="tab" aria-controls="information-part" id="information-part-trigger">
           <span class="bs-stepper-circle">2</span>
-          <span class="bs-stepper-label">Various information</span>
+          <span class="bs-stepper-label">Matiere</span>
         </button>
       </div>
+      <div class="line"></div>
+      <div class="step" data-target="#information">
+        <button type="button" class="step-trigger" role="tab" aria-controls="information" id="information-trigger">
+          <span class="bs-stepper-circle">3</span>
+          <span class="bs-stepper-label">Rendu</span>
+        </button>
+      </div>
+      
     </div>
     <div class="bs-stepper-content">
       <!-- your steps content here -->
       <div id="logins-part" class="content" role="tabpanel" aria-labelledby="logins-part-trigger">
-        <input type="text" name="email" class="form-control" />
+        <label>Auteur du devoir</label>
+        <input type="text" name="email" [(ngModel)]="assignment.auteur" class="form-control" />
         <button class="btn btn-primary start" (click)="next()">Suivant</button>
       </div>
       <div id="information-part" class="content" role="tabpanel" aria-labelledby="information-part-trigger">
         <input type="text" name="email2" class="form-control" />
         <div class="button-container">
-          <button class="btn btn-primary" (click)="previous()">Previous</button>
-          <button class="btn btn-primary" (click)="next()">Next</button>
+          <label>Auteur du devoir</label>
+        <input type="text" name="email" class="form-control" />
+          <button class="btn btn-primary" (click)="previous()">Precedent</button>
+          <button class="btn btn-primary" (click)="next()">Suivant</button>
+        </div>
+        
+      </div>
+      <div id="information" class="content" role="tabpanel" aria-labelledby="information-trigger">
+        <input type="text" name="email2" class="form-control" />
+        <div class="button-container">
+          <button class="btn btn-primary" (click)="previous()">Precedent</button>
+          <button class="btn btn-primary" (click)="submit()">Terminer</button>
         </div>
         
       </div>

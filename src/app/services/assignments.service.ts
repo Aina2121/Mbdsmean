@@ -30,4 +30,8 @@ export class AssignmentsService {
     console.log("options", options)
     return this._http.put(environment.apiUrl + "assignments", assignment, options)
   }
+
+  getSubject(): Observable<any> {
+    return this._http.get(environment.apiUrl + "subjects")
+  }
 }

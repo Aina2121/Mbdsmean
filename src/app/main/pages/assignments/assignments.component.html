@@ -10,7 +10,7 @@
     <section class="left-container" cdkDropList (cdkDropListDropped)="onDrop($event)">
       <h2 class="centered-title red-text">Non rendus</h2>
       <div class="card" *ngFor="let assignment of renduFalseAssignments" cdkDrag [cdkDragData]="assignment" style="width: 18rem;">
-        <img [src]="assignment.subject.uri_mat" alt="Image de {{ assignment.auteur }}" class="card-img-top" alt="...">
+        <img (click)="openDetails(assignment)" [src]="assignment.subject.uri_mat" alt="Image de {{ assignment.auteur }}" class="card-img-top" alt="...">
         <div class="card-body">
           <p class="card-text"> Auteur :  {{ assignment.auteur }}</p>
         </div>
@@ -24,7 +24,7 @@
     <aside class="right-container">
       <h2 class="centered-title green-text">Rendus</h2>
       <div class="card" *ngFor="let assignment of renduTrueAssignments" cdkDrag [cdkDragData]="assignment" style="width: 18rem;">
-        <img [src]="assignment.subject.uri_mat" alt="Image de {{ assignment.auteur }}" class="card-img-top">
+        <img (click)="openDetails(assignment)" [src]="assignment.subject.uri_mat" alt="Image de {{ assignment.auteur }}" class="card-img-top">
         <div class="card-body">
           Auteur : {{ assignment.auteur }}
           <br>
@@ -81,3 +81,34 @@
     Dernière page
   </button>
 </div>
+
+
+
+<ng-template #details>
+  <div class="modal-header">
+    <h4 class="modal-title">Details de l'Assignment</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="container">
+      <div class="left">
+        <img [src]="assignmentDetails.subject.uri_mat" alt="Image de {{ assignmentDetails.auteur }}" class="small-image"><br>
+        Auteur : {{ assignmentDetails.auteur }}
+        <br>
+        Date de rendu : {{ assignmentDetails.dateRendu }}
+        <br>
+        Note : {{ assignmentDetails.note }}
+      </div>
+      <div>
+        <img [src]="assignmentDetails.subject.uri_prof" alt="Image de {{ assignmentDetails.subject.nomProf }}" class="small-image"><br>
+        Prof : {{ assignmentDetails.subject.nomProf }}
+        <br>
+        Matiere : {{ assignmentDetails.subject.nom }}
+        <br>
+        Remarque : {{ assignmentDetails.remarque }}
+      </div>
+    </div>
+  </div>
+</ng-template>
