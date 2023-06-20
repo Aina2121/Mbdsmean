@@ -115,6 +115,7 @@ export class AssignmentsComponent {
 
   addNote() {
     var data : Assignment = {
+      _id: this.assignmentDrag._id,
       auteur: this.assignmentDrag.auteur,
       rendu: true,
       dateRendu: this.noteForm.value.dateRendu,

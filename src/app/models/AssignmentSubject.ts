@@ -1,4 +1,5 @@
 export class AssignmentSubject {
+    _id: String
     auteur:String
     rendu:boolean
     dateRendu:Date
