@@ -32,3 +32,30 @@
 .modal-body {
   padding: 10px;
 }
+.small-image {
+  max-width: 200px; /* Définissez la largeur maximale souhaitée */
+  max-height: 200px; /* Définissez la hauteur maximale souhaitée */
+}
+
+.red-text {
+  color: red;
+}
+
+.green-text {
+  color: green;
+}
+
+.centered-title {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.button-container button {
+  margin: 0 10px;
+}
