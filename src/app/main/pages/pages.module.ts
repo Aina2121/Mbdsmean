@@ -13,7 +13,8 @@ import { MiscellaneousModule } from './miscellaneous/miscellaneous.module';
 import { AddAssignmentComponent } from './assignments/add-assignment/add-assignment.component';
 import { AssignmentDetailComponent } from './assignments/assignment-detail/assignment-detail.component';
 import { EditAssignmentComponent } from './assignments/edit-assignment/edit-assignment.component';
-import { AssignmentsComponent } from './assignments/assignments.component'
+import { AssignmentsComponent } from './assignments/assignments.component';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 
 // routing
 const routes: Routes = [
@@ -46,7 +47,8 @@ const routes: Routes = [
     NgSelectModule,
     FormsModule,
     AuthenticationModule,
-    MiscellaneousModule
+    MiscellaneousModule,
+    DragDropModule
   ],
 
   providers: []

@@ -1,1 +1,46 @@
-<p>assignments works!</p>
+<!-- assignments.component.html -->
+
+<div class="container">
+    <div class="left-container">
+      <div class="card" *ngFor="let assignment of renduFalseAssignments" cdkDrag [cdkDragData]="assignment">
+        {{ assignment.name }}
+      </div>
+    </div>
+    <div class="right-container" cdkDropList (cdkDropListDropped)="onDrop($event)">
+      <div class="card" *ngFor="let assignment of renduTrueAssignments" cdkDrag [cdkDragData]="assignment">
+        {{ assignment.name }}
+      </div>
+    </div>
+  </div>
+
+  <ng-template #noteModal>
+    <div class="modal-header">
+      <h4 class="modal-title">Ajouter une note</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modalRef.hide()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <form [formGroup]="noteForm" (ngSubmit)="submitNote()">
+        <div class="form-group">
+          <label>Note</label>
+          <textarea class="form-control" formControlName="note" rows="4"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Ajouter</button>
+      </form>
+    </div>
+  </ng-template>
+
+  <p>
+    <button (click)="premierePage()" [disabled]="!hasPrevPage">
+        Première page
+    </button>
+    <button (click)="pagePrecedente()" [disabled]="!hasPrevPage">
+        Page Précédente
+    </button>
+    <button (click)="pageSuivante()" [disabled]="!hasNextPage">Page Suivante</button>
+    <button (click)="dernierePage()" [disabled]="!hasNextPage">
+        Derniere page
+    </button>
+</p>
+  
