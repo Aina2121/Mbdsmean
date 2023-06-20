@@ -2,6 +2,8 @@
 # RAMAVO HARINAIVO Faly Ny Aina n38
 # RAMORASATA Mihaja Andrianina n39
 
+Les admins - ayant tout acces (email: admin@gmail.com / password : adminPassword)
+
 Dans ce projet, on a utilisé Vuexy comme template pour le design.
 Les modules qu'on a fini sont:
  1. Login (avec JWT)
