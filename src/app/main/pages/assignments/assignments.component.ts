@@ -15,6 +15,7 @@ import { CdkDragDrop } from '@angular/cdk/drag-drop';
 export class AssignmentsComponent {
   assignments: AssignmentSubject[] = [];
 
+  assignmentDrag:AssignmentSubject;
   renduFalseAssignments: AssignmentSubject[] = [];
   renduTrueAssignments: AssignmentSubject[] = [];
 
@@ -36,14 +37,16 @@ export class AssignmentsComponent {
   constructor(private assignmentsService:AssignmentsService, private modalService: BsModalService, private formBuilder: FormBuilder) {}
 
   onDrop(event: CdkDragDrop<AssignmentSubject[]>) {
-    const assignment: AssignmentSubject = event.item.data;
-    assignment.rendu = true;
-    this.openNoteModal(assignment);
+    this.assignmentDrag = event.item.data;
+    this.assignmentDrag.rendu = true;
+    this.openNoteModal();
     this.renduFalseAssignments.splice(event.previousIndex, 1);
   }
 
-  openNoteModal(assignment: AssignmentSubject) {
-    this.modalRef = this.modalService.show(this.noteModal);
+  openNoteModal() {
+    console.log("open")
+   this.modalRef = this.modalService.show(this.noteModal);
+   this.renduTrueAssignments.push(this.assignmentDrag);
   }
 
   submitNote() {

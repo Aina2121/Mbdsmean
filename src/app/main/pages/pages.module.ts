@@ -15,7 +15,7 @@ import { AssignmentDetailComponent } from './assignments/assignment-detail/assig
 import { EditAssignmentComponent } from './assignments/edit-assignment/edit-assignment.component';
 import { AssignmentsComponent } from './assignments/assignments.component';
 import { DragDropModule } from '@angular/cdk/drag-drop';
-
+import { ModalModule } from 'ngx-bootstrap/modal';
 // routing
 const routes: Routes = [
   {
@@ -41,6 +41,7 @@ const routes: Routes = [
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
+    ModalModule.forRoot(),
     CoreCommonModule,
     ContentHeaderModule,
     NgbModule,

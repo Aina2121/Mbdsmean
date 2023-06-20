@@ -48,7 +48,8 @@
               "src/assets/fonts/font-awesome/css/font-awesome.min.css",
               "src/assets/fonts/flag-icon-css/css/flag-icon.min.css",
               "node_modules/bs-stepper/dist/css/bs-stepper.min.css",
-              "node_modules/bootstrap/dist/css/bootstrap.min.css"
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "node_modules/ngx-bootstrap/modal/bs-modal.css"
             ],
             "stylePreprocessorOptions": {
               "includePaths": ["node_modules", "src/assets/"]
